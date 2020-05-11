@@ -1,0 +1,11 @@
+function na_remove_slug( $post_link, $post, $leavename ) {
+
+    if ( 'events' != $post->post_type || 'publish' != $post->post_status ) {
+        return $post_link;
+    }
+
+    $post_link = str_replace( '/' . $post->post_type . '/', '/', $post_link );
+
+    return $post_link;
+}
+add_filter( 'post_type_link', 'na_remove_slug', 10, 3 );
