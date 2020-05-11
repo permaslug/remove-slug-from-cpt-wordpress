@@ -1,0 +1,11 @@
+function na_parse_request( $query ) {
+
+    if ( ! $query->is_main_query() || 2 != count( $query->query ) || ! isset( $query->query['page'] ) ) {
+        return;
+    }
+
+    if ( ! empty( $query->query['name'] ) ) {
+        $query->set( 'post_type', array( 'post', 'events', 'page' ) );
+    }
+}
+add_action( 'pre_get_posts', 'na_parse_request' );
